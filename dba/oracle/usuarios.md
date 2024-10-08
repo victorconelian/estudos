@@ -32,6 +32,7 @@ Depois que o usuário pode se conectar ao banco, pode ser necessário conceder p
 
 ```sql
 -- Gerar comandos de concessão de SELECT
+-- Este comando gera automaticamente instruções GRANT SELECT para todos os objetos pertencentes ao esquema SCHEMA, facilitando o processo de concessão de privilégios em massa.
 SELECT
   'GRANT SELECT ON '
   || owner
@@ -43,5 +44,8 @@ FROM
 WHERE
   owner IN ('SCHEMA');
 
-  -- Este comando gera automaticamente instruções GRANT SELECT para todos os objetos pertencentes ao esquema SCHEMA, facilitando o processo de concessão de privilégios em massa.
-
+-- Comando para ver os objetos pertencentes ao esquema SCHEMA
+select owner, object_name, object_type
+FROM  dba_objects
+WHERE
+  owner IN ('SCHEMA');
